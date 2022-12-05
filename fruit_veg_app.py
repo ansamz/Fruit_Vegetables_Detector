@@ -51,14 +51,14 @@ with st.sidebar:
 #path for images
 ###
 
-train_dir = Path('./data/fruits-360-original-size/Training')
+train_dir = Path('./data/Training')
 train_lst = list(train_dir.glob(r'**/*.jpg'))
 
-test_dir = Path('./data/fruits-360-original-size/Test')
+test_dir = Path('./data/Test')
 test_lst = list(test_dir.glob(r'**/*.jpg'))
 
-val_dir = Path('./data/fruits-360-original-size/Validation')
-val_lst = list(test_dir.glob(r'**/*.jpg'))
+# val_dir = Path('./data/fruits-360-original-size/Validation')
+# val_lst = list(test_dir.glob(r'**/*.jpg'))
 
 ###
 #Functions
@@ -146,7 +146,7 @@ def single_image_pred(model, path):
 
 train_df = df_images(train_lst)
 test_df = df_images(test_lst)
-val_df = df_images(val_lst)
+# val_df = df_images(val_lst)
 
 train_generator = tf.keras.preprocessing.image.ImageDataGenerator(
     preprocessing_function=tf.keras.applications.mobilenet_v2.preprocess_input
@@ -175,24 +175,24 @@ train_images = train_generator.flow_from_dataframe(
     fill_mode="nearest"
 )
 
-val_images = train_generator.flow_from_dataframe(
-    dataframe=val_df,
-    x_col='path',
-    y_col='label',
-    target_size=(224, 224),
-    color_mode='rgb',
-    class_mode='categorical',
-    batch_size=32,
-    shuffle=True,
-    seed=42,
-    rotation_range=30,
-    zoom_range=0.15,
-    width_shift_range=0.2,
-    height_shift_range=0.2,
-    shear_range=0.15,
-    horizontal_flip=True,
-    fill_mode="nearest"
-)
+# val_images = train_generator.flow_from_dataframe(
+#     dataframe=val_df,
+#     x_col='path',
+#     y_col='label',
+#     target_size=(224, 224),
+#     color_mode='rgb',
+#     class_mode='categorical',
+#     batch_size=32,
+#     shuffle=True,
+#     seed=42,
+#     rotation_range=30,
+#     zoom_range=0.15,
+#     width_shift_range=0.2,
+#     height_shift_range=0.2,
+#     shear_range=0.15,
+#     horizontal_flip=True,
+#     fill_mode="nearest"
+# )
 
 test_images = test_generator.flow_from_dataframe(
     dataframe=test_df,
