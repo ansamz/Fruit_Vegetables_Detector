@@ -144,6 +144,7 @@ def single_image_pred(model, path):
 #generate batches from dataframes
 ###
 
+@st.cache
 train_df = df_images(train_lst)
 test_df = df_images(test_lst)
 # val_df = df_images(val_lst)
