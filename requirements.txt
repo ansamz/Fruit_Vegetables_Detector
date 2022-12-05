@@ -6,3 +6,4 @@ pillow
 tensorflow
 scikit-learn
 scipy
+scikit-image
