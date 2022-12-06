@@ -38,3 +38,6 @@ Feel free to number or bullet point things here)
 * MobileNetV2
 * VGG-16
 * ResNet50
+
+### Streamlit App Link (still in progress)
+https://ansamz-fruit-vegetables-detector-fruit-veg-app-2jocy1.streamlit.app/
