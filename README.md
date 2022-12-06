@@ -1,9 +1,7 @@
-# Project Name
-
-example image:
+# Fruit Vegetables Detector
 
 
-![alternative text](reports/img/pic01.jpg)
+![alternative text](./app_styling/f_g.jpg)
 
 
 #### -- Project Status: [Active, On-Hold, Completed]
