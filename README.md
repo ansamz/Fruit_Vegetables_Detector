@@ -1,4 +1,4 @@
-# Fruit Vegetables Detector
+# Fruits and Vegetables Detector
 
 
 ![alternative text](./app_styling/f_g.jpg)
