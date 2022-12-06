@@ -24,7 +24,8 @@ The purpose of this project is to write an algorithm to detect fruits and vegeta
 * pillow
 
 ### Data
-Download Data from Kaggle: https://www.kaggle.com/datasets/moltean/fruits
+Download the whole dataset from Kaggle: https://www.kaggle.com/datasets/moltean/fruits
+This repo contains a few  samples from the data.
 
 ## Project Description
 (Provide more detailed overview of the project.
