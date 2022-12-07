@@ -53,7 +53,7 @@ with st.sidebar:
 
     st.subheader("For Multiple Objects Prediction")
     model2_choice = st.radio("Prediction model: ", ["VGG16", "other"])
-    predict2 = st.button("Show prediction")
+    predict2 = st.button("Show Multiple Predictions")
 
     file = st.file_uploader("Upload a n image")
 
