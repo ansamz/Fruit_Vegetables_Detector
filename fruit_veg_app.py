@@ -39,7 +39,7 @@ st.markdown("<h1 style='text-align: center; color: purple;'>Fruits and Vegetable
 with st.sidebar: 
     st.image("./app_styling/f_g.jpg")
     st.subheader("Which model would you like to use?")
-    model_choice = st.radio("Prediction model: ", ["CNN", "MobileNet", "VGG"])
+    model_choice = st.radio("Prediction model: ", ["CNN", "MobileNet"]) #, "VGG" (canceled due to large file)
     image_choice = st.radio("How would you like to test the models? ", ["Upload One Image", "Test Data"])
 
     #give choice to also run the model on test data/upload a whole folder? #TODO
@@ -146,7 +146,6 @@ def single_image_pred(model, path):
 
 train_df = df_images(train_lst)
 test_df = df_images(test_lst)
-# val_df = df_images(val_lst)
 
 train_generator = tf.keras.preprocessing.image.ImageDataGenerator(
     preprocessing_function=tf.keras.applications.mobilenet_v2.preprocess_input
@@ -174,25 +173,6 @@ train_images = train_generator.flow_from_dataframe(
     horizontal_flip=True,
     fill_mode="nearest"
 )
-
-# val_images = train_generator.flow_from_dataframe(
-#     dataframe=val_df,
-#     x_col='path',
-#     y_col='label',
-#     target_size=(224, 224),
-#     color_mode='rgb',
-#     class_mode='categorical',
-#     batch_size=32,
-#     shuffle=True,
-#     seed=42,
-#     rotation_range=30,
-#     zoom_range=0.15,
-#     width_shift_range=0.2,
-#     height_shift_range=0.2,
-#     shear_range=0.15,
-#     horizontal_flip=True,
-#     fill_mode="nearest"
-# )
 
 test_images = test_generator.flow_from_dataframe(
     dataframe=test_df,
