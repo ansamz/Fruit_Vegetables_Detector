@@ -155,7 +155,7 @@ def get_predictions(model, img_path):
     ax.imshow(Image.open(img_path).resize((224, 224), Image.ANTIALIAS))
     #plt.show()
     
-    f, axes = plt.subplots()
+    f2, axes = plt.subplots()
     f.set_size_inches(12, 8)
     img = load(img_path)
     img = preprocess_input(img)
@@ -163,7 +163,7 @@ def get_predictions(model, img_path):
     b = sns.barplot(y=[c[1] for c in preds], x=[c[2] for c in preds], color="gray", ax=axes)
     b.tick_params(labelsize=55)
     # f.show()
-    return f, b
+    return f, f2
 
 
 ###
@@ -271,9 +271,12 @@ if predict:
 
 if predict2:
     if model2_choice == "VGG16":
-        vgg16_model = VGG16(weights="imagenet")
-        f, b = get_predictions(vgg16_model, file)
-        st.pyplot(f)
-        st.pyplot(b)
+        with st.spinner('PREDICTING! I ap-peach-iate your patience'):
+            vgg16_model = VGG16(weights="imagenet")
+            f, f2 = get_predictions(vgg16_model, file)
+            st.pyplot(f)
+            st.pyplot(f2)
+            
+            
     if model2_choice == "other":
         st.write('soon')
