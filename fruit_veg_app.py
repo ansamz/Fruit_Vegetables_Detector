@@ -210,9 +210,10 @@ test_images = test_generator.flow_from_dataframe(
 ###
 url = 'https://drive.google.com/drive/folders/1-IS0XRGbHlPcGy-tvKp6VadzIj1nio5D?usp=sharing'
 path_vgg = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
+
 cnn_model = keras.models.load_model("cnn_model")
-mobilenet_model = keras.models.load_model(path_vgg)
-vgg16 = keras.models.load_model("vggmodel")
+mobilenet_model = keras.models.load_model("mobilenet_model")
+vgg16 = keras.models.load_model(path_vgg)
 
 ###
 #predict
