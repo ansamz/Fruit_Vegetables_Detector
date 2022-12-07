@@ -192,8 +192,6 @@ test_images = test_generator.flow_from_dataframe(
 def load_model(model):
     return keras.models.load_model(model)
 
-cnn_model = load_model("cnn_model")
-mobilenet_model = load_model("mobilenet_model")
 
 #Model is too big for github so I cancelled it
 #vgg16 = keras.models.load_model("vggmodel")
@@ -209,6 +207,8 @@ if agree:
     st.pyplot(fig1)
 
 if predict:
+    cnn_model = load_model("cnn_model")
+    mobilenet_model = load_model("mobilenet_model")
     if model_choice == "CNN":
         if image_choice == "Upload One Image":
             with st.spinner('PREDICTING! I have grape expectations for this.'):
