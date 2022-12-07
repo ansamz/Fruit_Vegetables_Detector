@@ -52,10 +52,10 @@ with st.sidebar:
     predict = st.button("Show prediction")
 
     st.subheader("For Multiple Objects Prediction")
-    model2_choice = st.radio("Prediction model: ", ["VGG16", "other"])
+    model2_choice = st.radio("Object Detection model: ", ["VGG16", "other"])
     predict2 = st.button("Show Multiple Predictions")
 
-    file = st.file_uploader("Upload a n image")
+    file = st.file_uploader("Upload an Image")
 
 ###
 #path for images
@@ -66,9 +66,6 @@ train_lst = list(train_dir.glob(r'**/*.jpg'))
 
 test_dir = Path('./data/Test')
 test_lst = list(test_dir.glob(r'**/*.jpg'))
-
-# val_dir = Path('./data/fruits-360-original-size/Validation')
-# val_lst = list(test_dir.glob(r'**/*.jpg'))
 
 ###
 #Functions
@@ -106,7 +103,6 @@ def display_picture(df):
   #plt.show()
 
   return fig
-
 
 def acc_score_display(model):
   # Predict the label of the test_images
