@@ -208,12 +208,12 @@ test_images = test_generator.flow_from_dataframe(
 ###
 #Load models
 ###
-url = 'https://drive.google.com/drive/folders/1-IS0XRGbHlPcGy-tvKp6VadzIj1nio5D?usp=sharing'
-path_vgg = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
 
 cnn_model = keras.models.load_model("cnn_model")
 mobilenet_model = keras.models.load_model("mobilenet_model")
-vgg16 = keras.models.load_model(path_vgg)
+
+#Model is too big for github so I cancelled it
+#vgg16 = keras.models.load_model("vggmodel")
 
 ###
 #predict
@@ -248,14 +248,14 @@ if predict:
                 fig2, acc_result = acc_score_display(mobilenet_model)
                 st.header(acc_result)
                 st.pyplot(fig2)
-    elif model_choice == "VGG":
-        if image_choice == "Upload One Image":
-            with st.spinner('PREDICTING!I ap-peach-iate your patience'):
-                result, image = single_image_pred(vgg16, file)
-                st.image(file, caption='The image you selected')
-                st.header(result)
-        elif image_choice == "Test Data":
-            with st.spinner('PREDICTING! Keep calm and carrot on'):
-                fig2, acc_result = acc_score_display(vgg16)
-                st.header(acc_result)
-                st.pyplot(fig2)
+    # elif model_choice == "VGG":
+    #     if image_choice == "Upload One Image":
+    #         with st.spinner('PREDICTING!I ap-peach-iate your patience'):
+    #             result, image = single_image_pred(vgg16, file)
+    #             st.image(file, caption='The image you selected')
+    #             st.header(result)
+    #     elif image_choice == "Test Data":
+    #         with st.spinner('PREDICTING! Keep calm and carrot on'):
+    #             fig2, acc_result = acc_score_display(vgg16)
+    #             st.header(acc_result)
+    #             st.pyplot(fig2)
