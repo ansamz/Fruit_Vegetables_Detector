@@ -188,9 +188,9 @@ test_images = test_generator.flow_from_dataframe(
 ###
 #Load models
 ###
-@st.cache
+@st.cache(allow_output_mutation=True)
 cnn_model = keras.models.load_model("cnn_model")
-@st.cache
+@st.cache(allow_output_mutation=True)
 mobilenet_model = keras.models.load_model("mobilenet_model")
 
 #Model is too big for github so I cancelled it
