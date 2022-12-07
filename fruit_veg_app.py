@@ -9,17 +9,26 @@ import copy
 from pathlib import Path
 import os.path
 import matplotlib.pyplot as plt
+import seaborn as sns
 from PIL import Image
 from skimage import transform
 
+import os
 import tensorflow as tf
 from tensorflow import keras
+from object_detection.utils import label_map_util
+from object_detection.utils import visualization_utils as vis_util
+from keras.applications.vgg16 import decode_predictions
+from keras.applications.vgg16 import preprocess_input
+from keras.preprocessing import image
 from tensorflow.keras import datasets, layers, models
-from tensorflow.keras.applications import EfficientNetB0
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPool2D, Flatten, Dense, InputLayer, BatchNormalization, Dropout
 from keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.optimizers import  Adam
+from sklearn.metrics import accuracy_score
+from PIL import Image
+from skimage import transform
 
 from sklearn.metrics import accuracy_score
 
@@ -40,12 +49,15 @@ with st.sidebar:
     st.image("./app_styling/f_g.jpg")
     st.subheader("Which model would you like to use?")
     model_choice = st.radio("Prediction model: ", ["CNN", "MobileNet"]) #, "VGG" (canceled due to large file)
-    image_choice = st.radio("How would you like to test the models? ", ["Upload One Image", "Test Data"])
-
-    #give choice to also run the model on test data/upload a whole folder? #TODO
-    file = st.file_uploader("Upload a n image")
-
+    image_choice = st.radio("How would you like to test the models? ", ["Test Data", "Upload One Image"])
+    #give choice to also run the model on test data/upload a whole folder
     predict = st.button("Show prediction")
+
+    st.subheader("For Multiple Objects Prediction")
+    model2_choice = st.radio("Prediction model: ", ["VGG16", "other"])
+    predict2 = st.button("Show prediction")
+
+    file = st.file_uploader("Upload a n image")
 
 ###
 #path for images
@@ -138,6 +150,22 @@ def single_image_pred(model, path):
   class_names = train_df.label.unique()
   result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[np.argmax(predictions)], 100 * np.max(predictions))
   return result, image
+
+def get_predictions(model, img_path):
+    f, ax = plt.subplots()
+    f.set_size_inches(12, 8)
+    ax.imshow(Image.open(img_path).resize((224, 224), Image.ANTIALIAS))
+    #plt.show()
+    
+    f, axes = plt.subplots()
+    f.set_size_inches(12, 8)
+    img = load(img_path)
+    img = preprocess_input(img)
+    preds  = decode_predictions(model.predict(img), top=3)[0]
+    b = sns.barplot(y=[c[1] for c in preds], x=[c[2] for c in preds], color="gray", ax=axes)
+    b.tick_params(labelsize=55)
+    # f.show()
+    return f, b
 
 
 ###
@@ -242,3 +270,12 @@ if predict:
     #             fig2, acc_result = acc_score_display(vgg16)
     #             st.header(acc_result)
     #             st.pyplot(fig2)
+
+if predict2:
+    if model2_choice == "VGG16":
+        vgg16_model = VGG16(weights="imagenet")
+        f, b = get_predictions(vgg16_model, file)
+        st.pyplot(f)
+        st.pyplot(b)
+    if model2_choice == "other":
+        st.write('soon')
