@@ -16,8 +16,6 @@ from skimage import transform
 import os
 import tensorflow as tf
 from tensorflow import keras
-from object_detection.utils import label_map_util
-from object_detection.utils import visualization_utils as vis_util
 from keras.applications.vgg16 import decode_predictions
 from keras.applications.vgg16 import preprocess_input
 from keras.preprocessing import image
