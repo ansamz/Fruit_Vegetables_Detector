@@ -8,3 +8,4 @@ scikit-learn
 scipy
 scikit-image
 seaborn
+tensorflow-object-detection-api
