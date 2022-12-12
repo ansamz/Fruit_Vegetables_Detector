@@ -4,8 +4,14 @@ matplotlib
 streamlit
 pillow
 tensorflow
-scikit-learn
+keras
+tensorflow-object-detection-api
 scipy
+scikit-learn
 scikit-image
 seaborn
-tensorflow-object-detection-api
+opencv-python
+h5py
+imgaug
+cython
+IPython

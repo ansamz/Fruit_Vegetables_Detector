@@ -23,7 +23,7 @@ from tensorflow.keras import datasets, layers, models
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPool2D, Flatten, Dense, InputLayer, BatchNormalization, Dropout
 from keras.applications.vgg16 import VGG16, preprocess_input
-from tensorflow.keras.optimizers import  Adam
+from tensorflow.keras.applications import EfficientNetB0, ResNet50
 from sklearn.metrics import accuracy_score
 from PIL import Image
 from skimage import transform
@@ -51,8 +51,9 @@ with st.sidebar:
     #give choice to also run the model on test data/upload a whole folder
     predict = st.button("Show prediction")
 
-    st.subheader("For Multiple Objects Prediction")
-    model2_choice = st.radio("Object Detection model: ", ["VGG16", "other"])
+    st.subheader("Prediction using Object detection API")
+    st.write('This is suitable for multiple objects prediction')
+    model2_choice = st.radio("Object Detection model: ", ["VGG16", 'ResNet50', 'EfficientNetB0'])
     predict2 = st.button("Show Multiple Predictions")
 
     file = st.file_uploader("Upload an Image")
@@ -149,7 +150,6 @@ def get_predictions(model, img_path):
     f, ax = plt.subplots()
     f.set_size_inches(12, 8)
     ax.imshow(Image.open(img_path).resize((224, 224), Image.ANTIALIAS))
-    #plt.show()
     
     f2, axes = plt.subplots()
     f.set_size_inches(12, 8)
@@ -158,7 +158,6 @@ def get_predictions(model, img_path):
     preds  = decode_predictions(model.predict(img), top=3)[0]
     b = sns.barplot(y=[c[1] for c in preds], x=[c[2] for c in preds], color="gray", ax=axes)
     b.tick_params(labelsize=55)
-    # f.show()
     return f, f2
 
 
@@ -274,5 +273,16 @@ if predict2:
             st.pyplot(f2)
             
             
-    if model2_choice == "other":
-        st.write('soon')
+    elif model2_choice == "ResNet50":
+        with st.spinner('PREDICTING! I ap-peach-iate your patience'):
+            resnet_model = ResNet50(weights="imagenet")
+            f, f2 = get_predictions(resnet_model, file)
+            st.pyplot(f)
+            st.pyplot(f2)
+
+    elif model2_choice == 'EfficientNetB0':
+        with st.spinner('PREDICTING! I ap-peach-iate your patience'):
+            efnetb0_model = EfficientNetB0(weights="imagenet")
+            f, f2 = get_predictions(efnetb0_model, file)
+            st.pyplot(f)
+            st.pyplot(f2)
