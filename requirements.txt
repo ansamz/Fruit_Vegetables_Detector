@@ -14,4 +14,4 @@ opencv-python
 h5py
 imgaug
 cython
-IPython
+IPython[all]
