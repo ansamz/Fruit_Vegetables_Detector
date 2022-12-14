@@ -17,7 +17,6 @@ import os
 import tensorflow as tf
 from tensorflow import keras
 from keras.applications.vgg16 import decode_predictions
-from keras.applications.vgg16 import preprocess_input
 from keras.preprocessing import image
 from tensorflow.keras import datasets, layers, models
 from keras.models import Sequential
@@ -143,13 +142,13 @@ def single_image_pred(model, path):
   image = load(path)
   predictions = model.predict(image)
   class_names = train_df.label.unique()
-  result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[np.argmax(predictions)], 100 * np.max(predictions))
+  result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[np.argmax(predictions, axis=1)], 100 * np.max(predictions))
   return result, image
 
 def get_predictions(model, img_path):
     f, ax = plt.subplots()
     f.set_size_inches(12, 8)
-    ax.imshow(Image.open(img_path).resize((224, 224), Image.ANTIALIAS))
+    ax.imshow(Image.open(img_path).resize((50, 50), Image.ANTIALIAS))
     
     f2, axes = plt.subplots()
     f.set_size_inches(12, 8)
