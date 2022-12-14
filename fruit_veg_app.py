@@ -140,8 +140,7 @@ def load(path):
    return np_image
   
 def single_image_pred(model, path):
-  image1 = load(path)
-  image = image1.resize(224, 224)
+  image = load(path)
   predictions = model.predict(image)
   class_names = train_df.label.unique()
   result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[np.argmax(predictions)], 100 * np.max(predictions))
