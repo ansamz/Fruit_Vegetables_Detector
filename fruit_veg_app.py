@@ -51,7 +51,7 @@ with st.sidebar:
     #give choice to also run the model on test data/upload a whole folder
     predict = st.button("Show prediction")
 
-    st.subheader("Prediction using Object detection API")
+    st.subheader("Prediction using Object Detection API")
     st.write('This is suitable for multiple objects prediction')
     model2_choice = st.radio("Object Detection model: ", ["VGG16", 'ResNet50', 'EfficientNetB0'])
     predict2 = st.button("Show Multiple Predictions")
@@ -140,7 +140,8 @@ def load(path):
    return np_image
   
 def single_image_pred(model, path):
-  image = load(path)
+  image1 = load(path)
+  image = image1.(224, 224)
   predictions = model.predict(image)
   class_names = train_df.label.unique()
   result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[np.argmax(predictions)], 100 * np.max(predictions))
