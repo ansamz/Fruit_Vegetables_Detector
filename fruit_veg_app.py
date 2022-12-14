@@ -144,7 +144,7 @@ def single_image_pred(model, path):
   pred = np.argmax(predictions, axis=1)
   labels = (train_images.class_indices)
   class_names = dict((v,k) for k,v in labels.items())
-  result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[np.argmax(predictions, axis=1)], 100 * np.max(predictions))
+  result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[pred], 100 * np.max(predictions))
   return result, image
 
 def get_predictions(model, img_path):
