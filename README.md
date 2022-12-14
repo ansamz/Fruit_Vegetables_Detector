@@ -22,6 +22,7 @@ The purpose of this project is to write an algorithm to detect fruits and vegeta
 * Streamlit
 * Google Colab Pro
 * pillow
+* Object Detection API
 
 ### Data
 Download the whole dataset from Kaggle: https://www.kaggle.com/datasets/moltean/fruits
@@ -38,8 +39,10 @@ Feel free to number or bullet point things here)
 ## Models
 * CNN
 * MobileNetV2
-* VGG-16
-* ResNet50
+* VGG-16(model trained on dataset) - was not included in the streamlit app because it was too big but you can find it in the notebook.
+* VGG16 (Object Detection API)
+* ResNet50 (Object Detection API)
+* EfficientNetB0 (Object Detection API)
 
 ### Streamlit App Link (still in progress)
 https://ansamz-fruit-vegetables-detector-fruit-veg-app-2jocy1.streamlit.app/
