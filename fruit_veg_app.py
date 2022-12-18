@@ -23,6 +23,10 @@ from keras.models import Sequential
 from keras.layers import Conv2D, MaxPool2D, Flatten, Dense, InputLayer, BatchNormalization, Dropout
 from keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.applications import EfficientNetB0, ResNet50
+from tensorflow.keras.utils import load_img
+from tensorflow.keras.utils import img_to_array
+from keras.preprocessing.image import ImageDataGenerator
+from keras.applications.imagenet_utils import preprocess_input
 from sklearn.metrics import accuracy_score
 from PIL import Image
 from skimage import transform
@@ -44,16 +48,17 @@ st.markdown("<h1 style='text-align: center; color: purple;'>Fruits and Vegetable
 #Add sidebar to app
 with st.sidebar: 
     st.image("./app_styling/f_g.jpg")
+
+    st.subheader("Prediction using Object Detection API")
+    st.write('This is suitable for multiple objects prediction')
+    model2_choice = st.radio("Object Detection model: ", ["VGG16", 'ResNet50', 'EfficientNetB0', 'cnn'])
+    predict2 = st.button("Show Multiple Predictions")
+
     st.subheader("Which model would you like to use?")
     model_choice = st.radio("Prediction model: ", ["CNN", "MobileNet"]) #, "VGG" (canceled due to large file)
     image_choice = st.radio("How would you like to test the models? ", ["Test Data", "Upload One Image"])
     #give choice to also run the model on test data/upload a whole folder
     predict = st.button("Show prediction")
-
-    st.subheader("Prediction using Object Detection API")
-    st.write('This is suitable for multiple objects prediction')
-    model2_choice = st.radio("Object Detection model: ", ["VGG16", 'ResNet50', 'EfficientNetB0'])
-    predict2 = st.button("Show Multiple Predictions")
 
     file = st.file_uploader("Upload an Image")
 
@@ -137,20 +142,23 @@ def load(path):
    np_image = transform.resize(np_image, (224, 224, 3))
    np_image = np.expand_dims(np_image, 0)
    return np_image
+
   
 def single_image_pred(model, path):
   image = load(path)
   predictions = model.predict(image)
-  pred = np.argmax(predictions, axis=1)
+  pred = np.argmax(predictions)
+  print('PRED', pred)
   labels = (train_images.class_indices)
   class_names = dict((v,k) for k,v in labels.items())
   result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[pred], 100 * np.max(predictions))
+  
   return result, image
 
 def get_predictions(model, img_path):
     f, ax = plt.subplots()
     f.set_size_inches(12, 8)
-    ax.imshow(Image.open(img_path).resize((50, 50), Image.ANTIALIAS))
+    ax.imshow(Image.open(img_path).resize((224, 224), Image.ANTIALIAS))
     
     f2, axes = plt.subplots()
     f.set_size_inches(12, 8)
@@ -253,6 +261,9 @@ if predict:
                 fig2, acc_result = acc_score_display(mobilenet_model)
                 st.header(acc_result)
                 st.pyplot(fig2)
+
+    #This was commented but you can download the trained model and run it locally on your personal computer
+                
     # elif model_choice == "VGG":
     #     if image_choice == "Upload One Image":
     #         with st.spinner('PREDICTING!I ap-peach-iate your patience'):
@@ -287,3 +298,4 @@ if predict2:
             f, f2 = get_predictions(efnetb0_model, file)
             st.pyplot(f)
             st.pyplot(f2)
+
