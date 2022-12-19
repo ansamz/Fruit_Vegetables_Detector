@@ -49,16 +49,16 @@ st.markdown("<h1 style='text-align: center; color: purple;'>Fruits and Vegetable
 with st.sidebar: 
     st.image("./app_styling/f_g.jpg")
 
-    st.subheader("Prediction using Object Detection API")
-    st.write('This is suitable for multiple objects prediction')
-    model2_choice = st.radio("Object Detection model: ", ["VGG16", 'ResNet50', 'EfficientNetB0', 'cnn'])
-    predict2 = st.button("Show Multiple Predictions")
-
     st.subheader("Which model would you like to use?")
     model_choice = st.radio("Prediction model: ", ["CNN", "MobileNet"]) #, "VGG" (canceled due to large file)
     image_choice = st.radio("How would you like to test the models? ", ["Test Data", "Upload One Image"])
     #give choice to also run the model on test data/upload a whole folder
     predict = st.button("Show prediction")
+
+    st.subheader("Prediction using Object Detection API")
+    st.write('This is suitable for multiple objects prediction')
+    model2_choice = st.radio("Object Detection model: ", ["VGG16", 'ResNet50', 'EfficientNetB0', 'cnn'])
+    predict2 = st.button("Show Multiple Predictions")
 
     file = st.file_uploader("Upload an Image")
     
