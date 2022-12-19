@@ -107,7 +107,6 @@ def display_picture(df):
     ax.imshow(plt.imread(df2.path[i]))
     ax.set_title(df2.label[i], fontsize = 15)
   plt.tight_layout()
-  #plt.show()
 
   return fig
 
@@ -134,11 +133,11 @@ def acc_score_display(model):
       ax.imshow(plt.imread(test_df.path.iloc[i]))
       ax.set_title(f"True: {test_df.label.iloc[i]}\nPredicted: {pred[i]}")
   plt.tight_layout()
-  #plt.show()
 
   return fig, acc_result
   
 def load(path):
+    #load single image
    np_image = Image.open(path)
    np_image = np.array(np_image).astype('float32')
    np_image = transform.resize(np_image, (224, 224, 3))

@@ -17,6 +17,9 @@ A streamlit app was created so you can test images on various models.
 Note:
 VGG-16 was not included in the streamlit app because the saved model was too big but you can find it in the [notebook](notebooks/Fruit_vegetables_detection_final.ipynb).
 
+Object Detection API citation:
+ https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/
+
 
 ### Streamlit App Link:
 https://ansamz-fruit-vegetables-detector-fruit-veg-app-2jocy1.streamlit.app/
