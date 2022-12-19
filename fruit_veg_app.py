@@ -146,7 +146,6 @@ def load(path):
 
 
 def single_image_pred(model, path):
-    test_generator
     img = load_img(path)  
     x = img_to_array(img)
     x = transform.resize(x, (224, 224, 3))
@@ -158,7 +157,7 @@ def single_image_pred(model, path):
     class_names = dict((v,k) for k,v in labels.items())
     result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[pred], 100 * np.max(predictions))
     
-    return result, image
+    return result, img
 
 
 
@@ -293,7 +292,7 @@ if predict2:
             
             
     elif model2_choice == "ResNet50":
-        with st.spinner('PREDICTING! I ap-peach-iate your patience'):
+        with st.spinner('PREDICTING! Keep calm and carrot on'):
             resnet_model = ResNet50(weights="imagenet")
             f, f2 = get_predictions(resnet_model, file)
             st.pyplot(f)
