@@ -50,6 +50,7 @@ with st.sidebar:
     st.image("./app_styling/f_g.jpg")
 
     st.subheader("Which model would you like to use?")
+    st.write('This is suitable for predicting images with one fruit or vegetable')
     model_choice = st.radio("Prediction model: ", ["CNN", "MobileNet"]) #, "VGG" (canceled due to large file)
     image_choice = st.radio("How would you like to test the models? ", ["Test Data", "Upload One Image"])
     #give choice to also run the model on test data/upload a whole folder
