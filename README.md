@@ -68,3 +68,5 @@ You Only Look Once:
 Unified, Real-Time Object Detection
 Citation: 
 https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Redmon_You_Only_Look_CVPR_2016_paper.pdf
+
+The pictures need labeling before training the model and it takes time.
