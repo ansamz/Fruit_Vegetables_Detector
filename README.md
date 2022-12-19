@@ -59,9 +59,9 @@ This repo contains a few  samples from the data.
 * cnn_model and mobilenet_model: save folders for the trained models.
 * data: contains samples of saved data from the data I used to train and test the models.
 * notebooks: 
-    - Fruit_vegetables_detection_final.ipynb : The code where I trained the CNN, VGG-16 and MobileNetV2 models.
-    - Object_Detection_API.ipynb: the code where I implemented Object detection API
-* fruit_veg_app.py: streamlit app code
+    - Fruit_vegetables_detection_final.ipynb [notebook](notebooks/Fruit_vegetables_detection_final.ipynb): The code where I trained the CNN, VGG-16 and MobileNetV2 models.
+    - Object_Detection_API.ipynb [notebook](notebooks/Object_Detection_API.ipynb): the code where I implemented Object detection API
+* fruit_veg_app.py [notebook](fruit_veg_app.py): streamlit app code
 
 ## TODO
 YOLO
