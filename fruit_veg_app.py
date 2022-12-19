@@ -58,7 +58,7 @@ with st.sidebar:
 
     st.subheader("Prediction using Object Detection API")
     st.write('This is suitable for multiple objects prediction')
-    model2_choice = st.radio("Object Detection model: ", ["VGG16", 'ResNet50', 'EfficientNetB0', 'cnn'])
+    model2_choice = st.radio("Object Detection model: ", ["VGG16", 'ResNet50', 'EfficientNetB0'])
     predict2 = st.button("Show Multiple Predictions")
 
     file = st.file_uploader("Upload an Image")
@@ -170,7 +170,7 @@ def get_predictions(model, img_path):
     f.set_size_inches(12, 8)
     img = load(img_path)
     img = preprocess_input(img)
-    preds  = decode_predictions(model.predict(img), top=3)[0]
+    preds  = decode_predictions(model.predict(img), top=5)[0]
     b = sns.barplot(y=[c[1] for c in preds], x=[c[2] for c in preds], color="gray", ax=axes)
     b.tick_params(labelsize=55)
     return f, f2
