@@ -61,6 +61,7 @@ with st.sidebar:
     predict = st.button("Show prediction")
 
     file = st.file_uploader("Upload an Image")
+    
 
 ###
 #path for images
@@ -143,17 +144,23 @@ def load(path):
    np_image = np.expand_dims(np_image, 0)
    return np_image
 
-  
+
 def single_image_pred(model, path):
-  image = load(path)
-  predictions = model.predict(image)
-  pred = np.argmax(predictions)
-  print('PRED', pred)
-  labels = (train_images.class_indices)
-  class_names = dict((v,k) for k,v in labels.items())
-  result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[pred], 100 * np.max(predictions))
-  
-  return result, image
+    test_generator
+    img = load_img(path)  
+    x = img_to_array(img)
+    x = transform.resize(x, (224, 224, 3))
+    x = np.expand_dims(x, 0)
+    single_pic = test_generator.flow(x, batch_size=1, save_prefix='cat', save_format='jpeg')
+    predictions = model.predict(single_pic)
+    pred = np.argmax(predictions)
+    labels = (train_images.class_indices)
+    class_names = dict((v,k) for k,v in labels.items())
+    result = "This image is most likely a {} with a {:.2f} percent confidence.".format(class_names[pred], 100 * np.max(predictions))
+    
+    return result, image
+
+
 
 def get_predictions(model, img_path):
     f, ax = plt.subplots()
