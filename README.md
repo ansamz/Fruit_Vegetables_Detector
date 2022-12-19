@@ -4,8 +4,6 @@
 ![alternative text](./app_styling/f_g.jpg)
 
 
-#### Project Status: [Active] 
-
 ## Project Intro/Objective
 The purpose of this project is to write an algorithm to detect fruits and vegetables.
 
